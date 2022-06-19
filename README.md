@@ -15,5 +15,18 @@ the grapetree software ([website](https://achtman-lab.github.io/GrapeTree/), but
 
 ## Creating a pan-genome
 
+### Nextflow scripts to run roary
+
+For the creation of the pan-genome, several processing steps were necessary before [roary](https://sanger-pathogens.github.io/Roary/) could be run, since roary requires a .gff file as input, which were annotated with [prokka](https://github.com/tseemann/prokka). The majority of the process, starting from fasta, was written in [nextflow](https://www.nextflow.io/). There is also a small bash script to extract fasta files from gbff. The general process is this:
+1. (potentially) convert gbff to fasta with the [bioconvert](https://bioconvert.readthedocs.io/en/master/installation.html) mode [genbank2fasta](https://bioconvert.readthedocs.io/en/master/ref_converters.html#bioconvert.genbank2fasta.GENBANK2FASTA)
+2. Run the nextflow script, which includes:
+2.1 Filter contigs shorter than 5000 bp to get rid of potential contaminations (script `filterContigs.pl`)
+2.2 Perform a prokka annotation on the resulting fasta files (keeping only the .gbff file for each sequence)
+2.3 Run roary on all prokka output files
+
+### Process the roary output
+
+
+
 
 
