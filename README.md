@@ -3,6 +3,8 @@
 The thesis that uses this code was written at Uppsala Universitet and can be found on [DiVA](http://uu.diva-portal.org/smash/record.jsf?dswid=-6916&pid=diva2%3A1671237&c=1&searchType=SIMPLE&language=en&query=large-scale+pan-genome+analysis+of+campylobacter+jejuni&af=%5B%5D&aq=%5B%5B%5D%5D&aq2=%5B%5B%5D%5D&aqe=%5B%5D&noOfRows=50&sortOrder=author_sort_asc&sortOrder2=title_sort_asc&onlyFullText=false&sf=undergraduate).
 The dataset consists of all _Campylobacter jejuni_ genomes that were present in the GenBank database in Autumn 2021.
 
+All steps on the analysis build on each other and can only be executed in order. I also recommend to keep input/output file names the same to ensure scripts use the correct files.
+
 
 ## Creating a phylogenetic tree
 
@@ -70,4 +72,16 @@ In the functional annotation directory, there are scripts to perform the pathoge
 
 
 ### NCBI plasmids
+
+The contigs that contribute to the jumps (entire contigs, not just the relevant gene families) are compared to the known _C. jejuni_ plasmids, (downloaded from [NCBI](https://www.ncbi.nlm.nih.gov/genome/browse/#!/plasmids/149/), May 2022).
+1. `merge_sequences_into_multifasta.py` make a reference database of all plasmids from the NCBI
+2. Since the entire contig should be used, `copy_contig_sequence_into_file.py` is used to extract sequences of entire contigs
+3. `blast_against_multifasta.py` with the plasmid multifasta as reference database
+4. `evaluate_plasmid_blast_against_source_dataset.py` evaluate the results
+5. `make_piecharts_for_ncbi_plasmid_matches.R` to plot the results
+
+
+
+
+
 
