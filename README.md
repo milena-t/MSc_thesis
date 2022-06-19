@@ -31,9 +31,9 @@ The selection results in lists of STs, which can be referred back to the MLST ou
 For the creation of the pan-genome, several processing steps were necessary before [roary](https://sanger-pathogens.github.io/Roary/) could be run, since roary requires a .gff file as input, which were annotated with [prokka](https://github.com/tseemann/prokka). The majority of the process, starting from fasta, was written in [nextflow](https://www.nextflow.io/). There is also a small bash script to extract fasta files from gbff. The general process is this:
 1. (potentially) convert gbff to fasta with the [bioconvert](https://bioconvert.readthedocs.io/en/master/installation.html) mode [genbank2fasta](https://bioconvert.readthedocs.io/en/master/ref_converters.html#bioconvert.genbank2fasta.GENBANK2FASTA)
 2. Run the nextflow script, which includes:
-* Filter contigs shorter than 5000 bp to get rid of potential contaminations (script `filterContigs.pl`)
-* Perform a prokka annotation on the resulting fasta files (keeping only the .gbff file for each sequence)
-* Run roary on all prokka output files
+  * Filter contigs shorter than 5000 bp to get rid of potential contaminations (script `filterContigs.pl`)
+  * Perform a prokka annotation on the resulting fasta files (keeping only the .gbff file for each sequence)
+  * Run roary on all prokka output files
 
 ### Process the roary output
 
@@ -42,9 +42,11 @@ All further analysis will be based on the roary output file "gene_presence_absen
 2. get the cumulative size of of the pan-genome from the binary matrix (python script)
 3. use milena-create_pangenome_plots.R script to plot the curve (modified from the existing roary script)
 
-In this directory, there is also R files to create different plots included in my thesis for specific pan-genome outputs
+In this directory, there is also R files to create different plots included in my thesis for specific pan-genome outputs.
 
 
+## Effects of filtering out small contigs
+For a few select genomes, the raw reads were mapped back onto the contigs of the assembly to calculate a per-contig coverage, to potentially see contaminations, which are characterised by short contig length and low coverage. For more details see my thesis.
 
 
 
