@@ -13,6 +13,17 @@ When there are unknown STs in the dataset, The script will also assign them a ne
 ### Turn allele types into a newick tree 
 the grapetree software ([website](https://achtman-lab.github.io/GrapeTree/), but it is a little out of date, see grapetree -h for up-to-date documentation) can be used to create a newick tree from a MLST output. It is important to mention that the headline of the file needs to start with '#', which is _not_ included in the merging script and has to be added manually! I used the `--profile` option.
 
+
+## Handle the phylogenetic tree and extract datasets
+
+All analyses were done with the [ETE3 toolkit](http://etetoolkit.org/). 
+
+Many STs appear multiple times in the MLST output, which this is very inconvenient for plotting. Duplicates can be removed with the `phylogenetic_trees/remove_duplicates_mlst_table.py` script, and a new phylogenetic tree can be generated from only unique STs.
+See my thesis for specifics on the datasets I decided to select. 
+
+The selection results in lists of STs, which can be referred back to the MLST output to extract the accession numbers.
+
+
 ## Creating a pan-genome
 
 ### Nextflow scripts to run roary
@@ -26,7 +37,7 @@ For the creation of the pan-genome, several processing steps were necessary befo
 
 ### Process the roary output
 
-
+All further analysis will be based on the roary output file
 
 
 
