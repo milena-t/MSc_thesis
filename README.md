@@ -59,8 +59,15 @@ For details on this process, see my presentation, and especially slide 19 of the
 5. process and plot the results (`contig_positions_of_added_genes_processing_and_plot.py`)
 
 
+## Functional annotation
+
+### VFDB
+
+In the functional annotation directory, there are scripts to perform the pathogenicity annotation by blasting gene family sequences against a database of VFDB sequences. The previously extracted individual gene family sequences are the query that gets compared to the reference database of annotated VF sequences
+1. `blast_against_VFDB_annotation.py` to sort the input files
+2. `blast_against_VFDB_annotation` does what it says it does, also includes the extraction of the annotations from the blast out files
+3. `plot_functional_annotation_contigs.R` plot the functional annotaion categories as a barplot
 
 
-
-
+### NCBI plasmids
 
