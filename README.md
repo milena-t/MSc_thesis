@@ -24,6 +24,10 @@ See my thesis for specifics on the datasets I decided to select.
 The selection results in lists of STs, which can be referred back to the MLST output to extract the accession numbers.
 
 
+## Effects of filtering out small contigs
+For a few select genomes, the raw reads were mapped back onto the contigs of the assembly to calculate a per-contig coverage, to potentially see contaminations, which are characterised by short contig length and low coverage. For more details see my thesis.
+
+
 ## Creating a pan-genome
 
 ### Nextflow scripts to run roary
@@ -45,8 +49,19 @@ All further analysis will be based on the roary output file "gene_presence_absen
 In this directory, there is also R files to create different plots included in my thesis for specific pan-genome outputs.
 
 
-## Effects of filtering out small contigs
-For a few select genomes, the raw reads were mapped back onto the contigs of the assembly to calculate a per-contig coverage, to potentially see contaminations, which are characterised by short contig length and low coverage. For more details see my thesis.
+## Investigate pan-genome curve peaks
+
+For details on this process, see my presentation, and especially slide 19 of the presentation. The process is this:
+1. find which gene families are present in the jumps (`find_genes_in_peaks_in_the_pangenome_curve.py`)
+2. Use the roary script "query_pan_genome" to extract the sequences of the gene families in the jumps (`query_pan_genome_extract_fasta.py`)
+3. blast the gene sequences agains the respective genome in their jump (`blast_genes_against_assemblies.py`)
+4. extract the contig number that each gene family matches (`blast_outfiles_extract_contig_numbers.py`)
+5. process and plot the results (`contig_positions_of_added_genes_processing_and_plot.py`)
+
+
+
+
+
 
 
 
