@@ -18,7 +18,7 @@ the grapetree software ([website](https://achtman-lab.github.io/GrapeTree/), but
 
 ## Handle the phylogenetic tree and extract datasets
 
-All analyses were done with the [ETE3 toolkit](http://etetoolkit.org/). 
+All analyses on the phylogenetic tree were done with the [ETE3 toolkit](http://etetoolkit.org/). 
 
 Many STs appear multiple times in the MLST output, which this is very inconvenient for plotting. Duplicates can be removed with the `phylogenetic_trees/remove_duplicates_mlst_table.py` script, and a new phylogenetic tree can be generated from only unique STs.
 See my thesis for specifics on the datasets I decided to select. 
@@ -40,6 +40,7 @@ For the creation of the pan-genome, several processing steps were necessary befo
   * Filter contigs shorter than 5000 bp to get rid of potential contaminations (script `filterContigs.pl`)
   * Perform a prokka annotation on the resulting fasta files (keeping only the .gbff file for each sequence)
   * Run roary on all prokka output files
+The Nextflow script has hardcoded directory names at each process, which can either be replaced with a config file or edited for each new run.
 
 ### Process the roary output
 
